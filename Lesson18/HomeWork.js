@@ -76,3 +76,8 @@ const calculate = (a, b, operator) => {
 console.log(calculate(3, 3, "-"))
 
 
+function math(firstNumber){
+
+}
+const calc = math(10);
+console.log(calc.plus(5));
