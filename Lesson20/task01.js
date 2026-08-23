@@ -1,6 +1,7 @@
 const printArray = (arr) => {
-    for (let i=0; i< arr.lenght; i++) {
-        console.log(arr(i));
+    for (let i=0; i< arr.length; i++) {
+        arr[i] = arr[i] * 10;
+        console.log(i,'->',arr[i]);
     }
 }
 
