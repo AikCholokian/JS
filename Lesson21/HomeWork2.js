@@ -64,40 +64,43 @@ transactionInfo() должна в этом случае выводить инф�
 */
 
 function Account(iban, owner, balance) {
-  return {
-    iban: iban,
-    owner: owner,
-    balance: balance,
-    deposit: function (amount) {
-      if (amount >= 0) {
+    this.iban = iban;
+    this.owner = owner;
+    this.balance = balance;
+    this.deposit = function (amount) {
+      if (amount > 0) {
         this.balance += amount;
+        return this.balance;
       } else {
         return "Некорректная сумма операции";
       }
-    },
-    withdraw: function (amount) {
+    };  
+    this.withdraw = function (amount) {
+      if (amount <= 0) {
+        return "Некорректная сумма операции";
+      }
       if (this.balance - amount >= 0) {
         this.balance -= amount;
+        return this.balance;
       } else {
         return "Недостаточно средств для вывода";
       }
-    },
-    getBalance: function () {
+    };
+    this.getBalance = function () {
       return this.balance;
-    },
-  };
+    };
 }
 
-let account1 = Account("123456789012345678", "John", 15000);
-let account2 = Account("476752387482374523", "Mary", 10000);
+let account1 = new Account("123456789012345678", "John", 15000);
+let account2 = new Account("476752387482374523", "Mary", 10000);
 console.log(account1);
 console.log(account2);
 
 const accounts = [
-  Account("123456789012345678", "John", 15000),
-  Account("476752387482374523", "Mary", 10000),
-  Account("123456789012345678", "John", 15000),
-  Account("476752387482374523", "Mary", 10000),
+  new Account("123456789012345678", "John", 15000),
+  new Account("476752387482374523", "Mary", 10000),
+  new Account("123456789012345678", "John", 15000),
+  new Account("476752387482374523", "Mary", 10000),
 ];
 console.log(accounts);
 

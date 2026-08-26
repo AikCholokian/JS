@@ -62,19 +62,17 @@ const objectProduct2 = {
     }
 };
 
-function addProduct(name, description, price) {
-    return {
-        name: name,
-        description: description,
-        price: price,
-        info: function () {
+function Product(name, description, price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.info = function () {
             return `товар: ${this.name}; цена: ${this.price}; описание: ${this.description}`;
-        }
-    };
+        };   
 }
 
-let product3 = addProduct('notebook HP EliteBook 840 G7', 'cpu intel core i5, ram:8gb ...', 1154);
-let product4 = addProduct('notebook Intel ', 'cpu intel core i9, ram:64gb ...', 3687);
+let product3 = new Product('notebook HP EliteBook 840 G7', 'cpu intel core i5, ram:8gb ...', 1154);
+let product4 = new Product('notebook Intel ', 'cpu intel core i9, ram:64gb ...', 3687);
 console.log(product3.info());
 console.log(product4.info());
 
