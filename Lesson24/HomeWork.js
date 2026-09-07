@@ -28,7 +28,7 @@ import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import { writeFile, readFile } from "node:fs/promises";
 import path from "node:path";
-import { select, confirm, password } from "@inquirer/prompts";
+
 
 async function runFridgeApp() {
   const r1 = readline.createInterface({ input, output });
