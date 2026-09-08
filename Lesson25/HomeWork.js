@@ -91,16 +91,46 @@ function removeProduct(fridge, product) {
   if (idx !== -1) {
     fridge.splice(idx, 1);
     console.log(`Продукт "${product}" удалён из списка.`);
-  }else {
+  } else {
     console.log("Продукт не найден.");
-    
+  }
+}
+
+function addOrUpdateProduct(fridge, name, count, price) {
+  const idx = fridge.findIndex((item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+  if (idx !== -1) {
+    fridge[idx].count += count;
+    console.log(`Количество продукта "${name}" обновлено:`, fridge[idx]);
+    fridge[idx].price = price
+    console.log(`Цена продукта "${name}" обновлено:`, fridge[idx]);
+  } else {
+    fridge.push({ name, count, price });
+    console.log("Продукт добавлен:", {
+        name: name,
+        count,
+        price,
+      });
+  }
+}
+
+function displayFridgeContents(fridge) {
+  console.log("=== Содержимое холодильника ===");
+  let count = 1;
+  if (fridge.length === 0) {
+    console.log("Холодильник пуст.");
+  } else {
+    fridge.forEach((product) => {
+      console.log(`${count++}. ${product.name}: ${product.count}:
+                 ${product.price}`);
+    });
   }
 }
 
 // main function
 async function runFridgeApp(fileName) {
+  const filePath = path.resolve(fileName);
   const rl = readline.createInterface({ input, output });
-  const fridge = await readFromJsonFile(fileName);
+  const fridge = await readFromJsonFile(filePath);
   console.log("Программа для учета продуктов в холодильнике.");
   console.log(
     "Введите продукты в холодильнике. Для завершения введите  ",
@@ -116,12 +146,26 @@ async function runFridgeApp(fileName) {
     if (countInput === null) {
       break;
     }
+    if (countInput === 0) {
+      removeProduct(fridge, name);
+      continue;
+    }
     const priceInput = await priceProducts(rl, name);
     if (priceInput === null) {
       break;
     }
-    if (countInput === 0) {
-      removeProduct(fridge, name);
-    }
+    console.log("Текущий список продуктов:");
+    addOrUpdateProduct(fridge, name, countInput, priceInput);
+    console.table(fridge); 
   }
-}
+  rl.close();
+  displayFridgeContents(fridge);
+    try{
+      await writeFile(filePath, JSON.stringify(fridge, null, 2), "utf-8");
+      console.log(`Данные о продуктах сохранены в файл: ${filePath}`);
+    } catch (error) {
+      console.error("Ошибка при работе с файлом:", error.message);
+    }
+  } 
+const fileName = "fridge.json";
+runFridgeApp(fileName);
