@@ -22,6 +22,15 @@ async function readFromJsonFile(filePath) {
   }
 }
 
+async function writeToJsonFile(filePath, data) {
+  try {
+    await writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
+    console.log(`Данные о продуктах сохранены в файл: ${filePath}`);
+  } catch (error) {
+    console.error("Ошибка при работе с файлом:", error.message);
+  }
+}
+
 //user interaction functions
 // ============================== //
 const stopWords = ["exit", "выход", "стоп", "stop"];
@@ -76,7 +85,7 @@ async function priceProducts(rl, product) {
       continue;
     }
     price = Number(price);
-    if (Number.isNaN(price) || price <= 0) {
+    if (Number.isNaN(price) || price < 0) {
       console.log("Стоимость введена некорректно. Попробуйте снова.");
       continue;
     }
@@ -97,31 +106,33 @@ function removeProduct(fridge, product) {
 }
 
 function addOrUpdateProduct(fridge, name, count, price) {
-  const idx = fridge.findIndex((item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+  const idx = fridge.findIndex(
+    (item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase(),
+  );
   if (idx !== -1) {
     fridge[idx].count += count;
     console.log(`Количество продукта "${name}" обновлено:`, fridge[idx]);
-    fridge[idx].price = price
+    fridge[idx].price = price;
     console.log(`Цена продукта "${name}" обновлено:`, fridge[idx]);
   } else {
     fridge.push({ name, count, price });
     console.log("Продукт добавлен:", {
-        name: name,
-        count,
-        price,
-      });
+      name: name,
+      count,
+      price,
+    });
   }
 }
 
 function displayFridgeContents(fridge) {
   console.log("=== Содержимое холодильника ===");
-  let count = 1;
   if (fridge.length === 0) {
     console.log("Холодильник пуст.");
   } else {
-    fridge.forEach((product) => {
-      console.log(`${count++}. ${product.name}: ${product.count}:
-                 ${product.price}`);
+    fridge.forEach((product, index) => {
+      console.log(
+        `${index +1}. ${product.name}: ${product.count}: ${product.price}`,
+      );
     });
   }
 }
@@ -156,16 +167,11 @@ async function runFridgeApp(fileName) {
     }
     console.log("Текущий список продуктов:");
     addOrUpdateProduct(fridge, name, countInput, priceInput);
-    console.table(fridge); 
+    console.table(fridge);
   }
   rl.close();
   displayFridgeContents(fridge);
-    try{
-      await writeFile(filePath, JSON.stringify(fridge, null, 2), "utf-8");
-      console.log(`Данные о продуктах сохранены в файл: ${filePath}`);
-    } catch (error) {
-      console.error("Ошибка при работе с файлом:", error.message);
-    }
-  } 
+  writeToJsonFile(filePath, fridge);
+}
 const fileName = "fridge.json";
 runFridgeApp(fileName);
