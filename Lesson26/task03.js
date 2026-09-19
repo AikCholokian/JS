@@ -12,19 +12,19 @@ const userId = 1;
 const userData = await returnUser(userId);
 console.log(userData);
 
-const userDataJson = JSON.stringify(userData, null, 2);
-console.log(userDataJson);
+// const userDataJson = JSON.stringify(userData, null, 2);
+// console.log(userDataJson);
 
-const names = [];
-for (let i = 1; i <= 10; i++) {
-    const userData = await returnUser(i);
-    names.push({
-        id: userData.id,
-        name: userData.name,
-        latitude: userData.address.geo.lat,
-        longitude: userData.address.geo.lng,
+// const names = [];
+// for (let i = 1; i <= 10; i++) {
+//     const userData = await returnUser(i);
+//     names.push({
+//         id: userData.id,
+//         name: userData.name,
+//         latitude: userData.address.geo.lat,
+//         longitude: userData.address.geo.lng,
 
-    })
-}
-console.log(names);
+//     })
+// }
+// console.log(names);
 
