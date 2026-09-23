@@ -33,7 +33,7 @@ export async function askAi(prompt) {
     const data = await response.json();
     const answer = data?.candidates[0]?.content.parts[0]?.text;
     if (!answer) {
-        throw new Error('No answer from Gemini');
+        throw new Error('Нет ответа от Gemini');
     }
 
     return answer;

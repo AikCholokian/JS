@@ -18,13 +18,13 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const userName = userNameInput.value.trim();
   if (!userName) {
-    errorModal("User name is required");
+    errorModal("Имя пользователя не может быть пустым!");
     return;
   }
   const authenticatedUser = getUserByNameOrCreateGuest(users, userName);
   const dishTitle = dishTitleInput.value.trim();
   if (!dishTitle) {
-    errorModal("Dish title is required");
+    errorModal("Название блюда не может быть пустым!");
     return;
   }
   console.log(dishTitle, authenticatedUser);

@@ -35,7 +35,7 @@ export function createBasePromptByRole(user) {
 
     }
 
-    throw new Error("Access denied. Contact the administrator.");
+    throw new Error("В доступе отказанно. Обратитесь к администратору!");
 }
 
 export function formatProductsForPrompt(products) {
@@ -44,11 +44,11 @@ export function formatProductsForPrompt(products) {
 
 export function createPrompt(basePrompt, dishTitle, products) {
     if(!dishTitle.trim()){
-        throw new Error(`The dish title is required`);
+        throw new Error(`Название блюда обязательно!`);
     }
 
     if(!Array.isArray(products)) {
-        throw new Error(`The product must be an array of ${products}`);
+        throw new Error(`Список продуктов должен быть массивом ${products}`);
     }
 
     const productText = formatProductsForPrompt(products);
