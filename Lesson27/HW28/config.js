@@ -1,0 +1,13 @@
+import {GEMINI_API_KEY} from "./secret.example.js";
+
+const ROLES = {
+    USER: 'USER',
+    ADMIN: 'ADMIN',
+    
+};
+
+const AI_MODEL = "gemini-3-flash-preview";
+
+const FRIDGE_FILE = "./fridge.json";
+const USERS_FILE = "./users.json";
+export {ROLES, AI_MODEL, FRIDGE_FILE, USERS_FILE, GEMINI_API_KEY};
