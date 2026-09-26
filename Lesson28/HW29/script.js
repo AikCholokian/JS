@@ -22,4 +22,14 @@ btn.addEventListener("click", (event) => {
 })
 
 listProducts.addEventListener("click", (event) => {
+    const click = event.target.closest("li");
+    if (click === null || click === undefined) {
+        return;
+    }
+    const check = click.querySelector("input");
+    if ( check.hidden === true) {
+        return check.hidden = false;
+    }else {
+        return check.hidden = true;
+    }
 })
