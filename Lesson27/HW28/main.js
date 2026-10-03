@@ -4,6 +4,7 @@ import { FRIDGE_FILE, USERS_FILE } from "./config.js";
 import { createBasePromptByRole, createPrompt } from "./promptService.js";
 import { askAi } from "./aiService.js";
 import { errorModal } from "./errorService.js";
+import { getAnswer} from "../../lesson_add_1/Storeervis.js";
 
 const users = await readFromJsonFile(USERS_FILE);
 const products = await readFromJsonFile(FRIDGE_FILE);
@@ -35,6 +36,10 @@ form.addEventListener("submit", async (event) => {
     const prompt = createPrompt(basePrompt, dishTitle, products);
     const answer = await askAi(prompt);
     result.textContent = answer;
+    const answerFromProdList = JSON.parse(answer);
+    if (Array.isArray(answerFromProdList)) {
+      getAnswer(answerFromProdList);
+    }
   } catch (error) {
     errorModal(error.message);
   } finally {

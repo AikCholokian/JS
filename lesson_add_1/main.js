@@ -1,13 +1,9 @@
-// //const app = document.getElementById('app');
+//const app = document.getElementById('app');
+//
+import {products} from "./Storeervis.js";
+console.log(products);
 const app = document.querySelector('#app');
-const products = [
-    "Молоко",
-    "Хлеб",
-    "Сыр",
-    "Молоко",
-    "Яйца",
-    "Хлеб"
-];
+
 //
 // console.log(app);
 // console.dir(app);
@@ -34,6 +30,7 @@ function createUI(app) {
     return {form, list, input, buttonArr};
 }
 // const ui = createUI(app);
+
 
 const {form, input, list, buttonArr} = createUI(app);
 function createLi(prod) {
@@ -63,6 +60,7 @@ function handleSubmit(e) {
 }
 function handleClickAddList(e) {
     e.preventDefault();
+    console.log(products);
     for (const product of products) {
         if (!checkDuplicate(product)) {
             createLi(product);
