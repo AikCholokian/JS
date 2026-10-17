@@ -1,16 +1,16 @@
 import {add, multiply, subtract, divide} from "./math.js";
-import {getCircleArea, getCircleLength, getRectangleArea, pi} from "./geometry.js";
+import {getCircleArea, getCircleLength, getRectangleArea, PI} from "./geometry.js";
 
 console.log("=========Math functions==========")
 
-console.log(add(15, 7));
-console.log(multiply(6, 9));
-console.log(subtract(20, 8));
-console.log(divide(100, 4));
-console.log(divide(100, 0));
+console.log(`15 + 7 = ${add(15, 7)}`)
+console.log(`6 * 9 = ${multiply(6, 9)}`)
+console.log(`20 - 8 = ${subtract(20, 8)}`)
+console.log(`100 / 4 = ${divide(100, 4)}`);
+console.log(`100 / 4 = ${divide(100, 0)}`);
 
 console.log("=========Geometry functions========")
 
-console.log(getCircleArea(5));
-console.log(getCircleLength(8, 12))
-console.log(getRectangleArea(10));
+console.log(`Circle area (r=5): ${getCircleArea(5)}`);
+console.log(`Circle length (r=10): ${getCircleLength(10)}`)
+console.log(`Rectangle area (8x12): ${getRectangleArea(8, 12)}`)

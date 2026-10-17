@@ -1,16 +1,13 @@
-export const pi = 3.14159;
+export const PI = 3.14159;
 
 export function getCircleArea(radius) {
-    const s = pi * radius * radius;
-    return `Circle area (r=${radius}): ${s}`;
+    return PI * radius * radius;
 }
 
 export function getRectangleArea(width, height) {
-    const s = width * height;
-    return `Rectangle area (${width}x${height}): ${s}`;
+    return width * height;
 }
 
 export function getCircleLength(radius) {
-    const c = 2 * pi * radius
-    return `Circle length (r=${radius}): ${c}`;
+    return 2 * PI * radius;
 }
