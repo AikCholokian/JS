@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/form.css">
+    <link rel="stylesheet" href="./css/table.css">
+    <script src="./js/userManager.js" defer></script>
+    <script src="./js/app.js" defer></script>
+</head>
+<body>
+<div class="main">
+    <form id="registerForm">
+        <h1>User Registration</h1>
+        <div>
+            <label for="userName"></label>
+            <input
+                    type="text"
+                    id="userName"
+                    name="userName"
+                    placeholder="Name"
+                    autocomplete="off"
+            >
+        </div>
+        <div>
+            <label for="age"></label>
+            <input
+                    type="text"
+                    id="age"
+                    name="age"
+                    placeholder="Age"
+                    autocomplete="off"
+            >
+        </div>
+        <div role="alert" id="error"></div>
+        <button type="submit">Register</button>
+    </form>
+    <div class="result">
+        <h2>Registered Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            </thead>
+            <tbody id="registeredUsers">
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+</body>
+</html>

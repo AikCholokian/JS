@@ -1,0 +1,20 @@
+form {
+    background-color: white;
+    border-radius: 10px;
+}
+h1 {
+    margin: 10px;
+}
+input {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+button {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    background-color: lightgray;
+    cursor: pointer;
+    
+}
